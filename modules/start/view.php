@@ -15,7 +15,7 @@
         <div class="alert alert-info alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <p style="font-size:15px">
-            <i class="icon fa fa-user"></i> Bienvenido <strong><?php echo $_SESSION['name_user']; ?></strong> a la aplicación de inventario de Instrumentos/Medicamentos.
+            <i class="icon fa fa-user"></i> Bienvenido <strong><?php echo $_SESSION['name_user']; ?></strong> a la aplicación de inventario y citas.
           </p>        
         </div>
       </div>  
@@ -74,6 +74,36 @@
           <?php  
           if ($_SESSION['permisos_acceso']!='gerente') { ?>
             <a href="?module=form_medicines_transaction&form=add" class="small-box-footer" title="Agregar" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
+          <?php
+          } else { ?>
+            <a class="small-box-footer"><i class="fa"></i></a>
+          <?php
+          }
+          ?>
+        </div>
+      </div><!-- ./col -->
+
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div style="background-color:#800080;color:#fff" class="small-box">
+          <div class="inner">
+            <?php   
+   
+            $query = mysqli_query($mysqli, "SELECT COUNT(codigo) as numero FROM citas")
+            or die('Error '.mysqli_error($mysqli));
+
+
+            $data = mysqli_fetch_assoc($query);
+            ?>
+            <h3><?php echo $data['numero']; ?></h3>
+            <p>Cantidad de citas</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </div>
+          <?php  
+          if ($_SESSION['permisos_acceso']!='gerente') { ?>
+            <a href="?module=form_patients&form=add" class="small-box-footer" title="Agregar" data-toggle="tooltip"><i class="fa fa-plus"></i></a>
           <?php
           } else { ?>
             <a class="small-box-footer"><i class="fa"></i></a>

@@ -32,6 +32,20 @@ if ($_SESSION['permisos_acceso']=='Super Admin') { ?>
   <?php
   }
 
+  if ($_GET["module"]=="patients" || $_GET["module"]=="form_patients") { ?>
+    <li class="active">
+      <a href="?module=patients"><i class="fa fa-user" aria-hidden="true"></i> Registro de citas </a>
+      </li>
+  <?php
+  }
+
+  else { ?>
+    <li>
+      <a href="?module=patients"><i class="fa fa-user" aria-hidden="true"></i> Registro de citas </a>
+      </li>
+  <?php
+  }
+
 
   if ($_GET["module"]=="medicines_transaction" || $_GET["module"]=="form_medicines_transaction") { ?>
     <li class="active">

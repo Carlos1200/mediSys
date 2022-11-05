@@ -4,11 +4,11 @@ if ($_GET['form']=='add') { ?>
 
   <section class="content-header">
     <h1>
-      <i class="fa fa-edit icon-title"></i> Agregar Instrumentos/Medicamentos
+      <i class="fa fa-edit icon-title"></i> Agregar cita
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
-      <li><a href="?module=medicines"> Instrumentos/Medicamentos </a></li>
+      <li><a href="?module=patients"> citas </a></li>
       <li class="active"> Más </li>
     </ol>
   </section>
@@ -19,11 +19,11 @@ if ($_GET['form']=='add') { ?>
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" action="modules/medicines/proses.php?act=insert" method="POST">
+          <form role="form" class="form-horizontal" action="modules/patients/proses.php?act=insert" method="POST">
             <div class="box-body">
               <?php  
           
-              $query_id = mysqli_query($mysqli, "SELECT RIGHT(codigo,6) as codigo FROM medicamentos
+              $query_id = mysqli_query($mysqli, "SELECT RIGHT(codigo,6) as codigo FROM citas
                                                 ORDER BY codigo DESC LIMIT 1")
                                                 or die('error '.mysqli_error($mysqli));
 
@@ -39,7 +39,7 @@ if ($_GET['form']=='add') { ?>
 
 
               $buat_id   = str_pad($codigo, 6, "0", STR_PAD_LEFT);
-              $codigo = "B$buat_id";
+              $codigo = "C$buat_id";
               ?>
 
               <div class="form-group">
@@ -57,36 +57,22 @@ if ($_GET['form']=='add') { ?>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Precio de Compra</label>
+                <label class="col-sm-2 control-label">Teléfono</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_compra" name="pcompra" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="tel" name="tel" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Precio de Venta</label>
+                <label class="col-sm-2 control-label">Fecha</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_venta" name="pventa" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <input type="date" class="form-control" id="fecha" name="fecha" autocomplete="off" required>
                   </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Unidad</label>
-                <div class="col-sm-5">
-                  <select class="chosen-select" name="unidad" data-placeholder="-- Seleccionar --" autocomplete="off" required>
-                    <option value=""></option>
-                    <option value="botellas">Botella</option>
-                    <option value="cajas">Cajas</option>
-                    <option value="caja">Caja</option>
-                    <option value="raya">Raya</option>
-                    <option value="tubo">Tubo</option>
-                  </select>
                 </div>
               </div>
 
@@ -96,7 +82,7 @@ if ($_GET['form']=='add') { ?>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <input type="submit" class="btn btn-primary btn-submit" name="Guardar" value="Guardar">
-                  <a href="?module=medicines" class="btn btn-default btn-reset">Cancelar</a>
+                  <a href="?module=patients" class="btn btn-default btn-reset">Cancelar</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
@@ -111,7 +97,7 @@ if ($_GET['form']=='add') { ?>
 elseif ($_GET['form']=='edit') { 
   if (isset($_GET['id'])) {
 
-      $query = mysqli_query($mysqli, "SELECT codigo,nombre,precio_compra,precio_venta,unidad FROM medicamentos WHERE codigo='$_GET[id]'") 
+      $query = mysqli_query($mysqli, "SELECT codigo,nombre,tel,fecha FROM citas WHERE codigo='$_GET[id]'") 
                                       or die('error: '.mysqli_error($mysqli));
       $data  = mysqli_fetch_assoc($query);
     }
@@ -119,11 +105,11 @@ elseif ($_GET['form']=='edit') {
 
   <section class="content-header">
     <h1>
-      <i class="fa fa-edit icon-title"></i> Modificar Instrumentos/Medicamentos
+      <i class="fa fa-edit icon-title"></i> Modificar cita
     </h1>
     <ol class="breadcrumb">
       <li><a href="?module=start"><i class="fa fa-home"></i> Inicio </a></li>
-      <li><a href="?module=medicines"> Instrumentos/Medicamentos </a></li>
+      <li><a href="?module=medicines"> citas </a></li>
       <li class="active"> Modificar </li>
     </ol>
   </section>
@@ -134,7 +120,7 @@ elseif ($_GET['form']=='edit') {
       <div class="col-md-12">
         <div class="box box-primary">
           <!-- form start -->
-          <form role="form" class="form-horizontal" action="modules/medicines/proses.php?act=update" method="POST">
+          <form role="form" class="form-horizontal" action="modules/patients/proses.php?act=update" method="POST">
             <div class="box-body">
               
               <div class="form-group">
@@ -152,38 +138,25 @@ elseif ($_GET['form']=='edit') {
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Precio de Compra</label>
+                <label class="col-sm-2 control-label">Teléfono</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_compra" name="pcompra" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo format_rupiah($data['precio_compra']); ?>" required>
+                    <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" id="tel" name="tel" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['tel']; ?>" required>
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="col-sm-2 control-label">Precio de Venta</label>
+                <label class="col-sm-2 control-label">Fecha</label>
                 <div class="col-sm-5">
                   <div class="input-group">
-                    <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_venta" name="pventa" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo format_rupiah($data['precio_venta']); ?>" required>
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <input type="date" class="form-control" id="fecha" name="fecha" autocomplete="off" value="<?php echo date('Y-m-d',strtotime($data["fecha"])) ?>" required>
                   </div>
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Unidad</label>
-                <div class="col-sm-5">
-                  <select class="chosen-select" name="unidad" data-placeholder="-- Seleccionar --" autocomplete="off" required>
-                    <option value="<?php echo $data['unidad']; ?>"><?php echo $data['unidad']; ?></option>
-                   <option value="botellas">Botella</option>
-                    <option value="cajas">Cajas</option>
-                    <option value="caja">Caja</option>
-                    <option value="raya">Raya</option>
-                    <option value="tubo">Tubo</option>
-                  </select>
-                </div>
-              </div>
 
             </div><!-- /.box body -->
 
@@ -191,7 +164,7 @@ elseif ($_GET['form']=='edit') {
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <input type="submit" class="btn btn-primary btn-submit" name="Guardar" value="Guardar">
-                  <a href="?module=medicines" class="btn btn-default btn-reset">Cancelar</a>
+                  <a href="?module=patients" class="btn btn-default btn-reset">Cancelar</a>
                 </div>
               </div>
             </div><!-- /.box footer -->
