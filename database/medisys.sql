@@ -49,7 +49,19 @@ INSERT INTO `medicamentos` (`codigo`, `nombre`, `precio_compra`, `precio_venta`,
 ('B000364', 'Quetiazic', 25, 50, 'cajas', 30, 1, '2017-07-25 02:59:48', 1, '2017-07-26 02:09:36');
 
 -- --------------------------------------------------------
-
+--Estructura de tabla para la tabla `citas`
+--
+DROP TABLE IF EXISTS `citas`;
+CREATE TABLE `citas` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `tel` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_date` datetime DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 --
 -- Estructura de tabla para la tabla `transaccion_medicamentos`
 --
