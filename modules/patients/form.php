@@ -17,6 +17,18 @@ if ($_GET['form']=='add') { ?>
   <section class="content">
     <div class="row">
       <div class="col-md-12">
+      <?php  
+      if (empty($_GET['alert'])) {
+        echo "";
+      } 
+      elseif ($_GET['alert'] == 1) {
+        echo "<div class='alert alert-danger alert-dismissable'>
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                <h4>  <i class='icon fa fa-check-circle'></i> Error!</h4>
+              Hay una cita previamente agendada para esa hora.
+              </div>";
+      }
+      ?>
         <div class="box box-primary">
           <!-- form start -->
           <form role="form" class="form-horizontal" action="modules/patients/proses.php?act=insert" method="POST">
@@ -71,7 +83,17 @@ if ($_GET['form']=='add') { ?>
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                    <input type="date" class="form-control" id="fecha" name="fecha" autocomplete="off" required>
+                    <input type="date" class="form-control" id="fecha" min="<?php echo date("Y-m-d"); ?>" name="fecha" autocomplete="off" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Hora</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                    <input type="time" class="form-control" id="hora" name="hora" min="08:00" max="17:00" step="3600" autocomplete="off" required>
                   </div>
                 </div>
               </div>
@@ -97,7 +119,7 @@ if ($_GET['form']=='add') { ?>
 elseif ($_GET['form']=='edit') { 
   if (isset($_GET['id'])) {
 
-      $query = mysqli_query($mysqli, "SELECT codigo,nombre,tel,fecha FROM citas WHERE codigo='$_GET[id]'") 
+      $query = mysqli_query($mysqli, "SELECT codigo,nombre,tel,fecha,hora FROM citas WHERE codigo='$_GET[id]'") 
                                       or die('error: '.mysqli_error($mysqli));
       $data  = mysqli_fetch_assoc($query);
     }
@@ -118,6 +140,18 @@ elseif ($_GET['form']=='edit') {
   <section class="content">
     <div class="row">
       <div class="col-md-12">
+      <?php  
+      if (empty($_GET['alert'])) {
+        echo "";
+      } 
+      elseif ($_GET['alert'] == 1) {
+        echo "<div class='alert alert-danger alert-dismissable'>
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                <h4>  <i class='icon fa fa-check-circle'></i> Error!</h4>
+              Hay una cita previamente agendada para esa hora.
+              </div>";
+      }
+      ?>
         <div class="box box-primary">
           <!-- form start -->
           <form role="form" class="form-horizontal" action="modules/patients/proses.php?act=update" method="POST">
@@ -152,11 +186,20 @@ elseif ($_GET['form']=='edit') {
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                    <input type="date" class="form-control" id="fecha" name="fecha" autocomplete="off" value="<?php echo date('Y-m-d',strtotime($data["fecha"])) ?>" required>
+                    <input type="date" class="form-control" id="fecha" name="fecha" min="<?php echo date("Y-m-d"); ?>" autocomplete="off" value="<?php echo date('Y-m-d',strtotime($data["fecha"])) ?>" required>
                   </div>
                 </div>
               </div>
 
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Hora</label>
+                <div class="col-sm-5">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                    <input type="time" class="form-control" id="hora" name="hora" min="08:00" max="17:00" step="3600" autocomplete="off" value="<?php echo $data['hora']; ?>" required>
+                  </div>
+                </div>
+              </div>
 
             </div><!-- /.box body -->
 

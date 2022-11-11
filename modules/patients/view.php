@@ -57,13 +57,14 @@
                 <th class="center">Nombre</th>
                 <th class="center">Contacto</th>
                 <th class="center">Fecha</th>
+                <th class="center">Hora</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
             <?php  
             $no = 1;
-            $query = mysqli_query($mysqli, "SELECT codigo,nombre,tel,fecha FROM citas ORDER BY codigo DESC")
+            $query = mysqli_query($mysqli, "SELECT codigo,nombre,tel,fecha,hora FROM citas ORDER BY codigo DESC")
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
@@ -76,6 +77,7 @@
                       <td width='180'>$data[nombre]</td>
                       <td width='100' align='right'>$data[tel]</td>
                       <td width='100' align='right'>$formatedDate</td>
+                      <td width='100' align='right'>$data[hora]</td>
                       <td class='center' width='80'>
                         <div>
                           <a data-toggle='tooltip' data-placement='top' title='modificar' style='margin-right:5px' class='btn btn-primary btn-sm' href='?module=form_patients&form=edit&id=$data[codigo]'>

@@ -58,6 +58,7 @@ CREATE TABLE `citas` (
   `nombre` varchar(255) DEFAULT NULL,
   `tel` int(11) DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
+  `hora` time DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_date` datetime DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
