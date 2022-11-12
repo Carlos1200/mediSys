@@ -61,7 +61,7 @@ if ($_GET['form']=='add') { ?>
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_compra" name="pcompra" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <input type="number" class="form-control" id="precio_compra" name="pcompra" autocomplete="off"  required min="0" step=".01">
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@ if ($_GET['form']=='add') { ?>
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_venta" name="pventa" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <input type="number" class="form-control" id="precio_venta" name="pventa" autocomplete="off" required  min="0" step=".01">
                   </div>
                 </div>
               </div>
@@ -156,7 +156,7 @@ elseif ($_GET['form']=='edit') {
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_compra" name="pcompra" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo format_rupiah($data['precio_compra']); ?>" required>
+                    <input type="number" class="form-control" id="precio_compra" name="pcompra" autocomplete="off" value="<?php echo $data['precio_compra']; ?>" required min="0" step=".01">
                   </div>
                 </div>
               </div>
@@ -166,7 +166,7 @@ elseif ($_GET['form']=='edit') {
                 <div class="col-sm-5">
                   <div class="input-group">
                     <span class="input-group-addon">$.</span>
-                    <input type="text" class="form-control" id="precio_venta" name="pventa" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo format_rupiah($data['precio_venta']); ?>" required>
+                    <input type="number" class="form-control" id="precio_venta" name="pventa" autocomplete="off" value="<?php echo $data['precio_venta']; ?>" required min="0" step=".01">
                   </div>
                 </div>
               </div>

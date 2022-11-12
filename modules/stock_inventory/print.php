@@ -13,7 +13,7 @@ $hari_ini = date("d-m-Y");
 
 $no = 1;
 
-$query = mysqli_query($mysqli, "SELECT codigo,nombre,precio_compra,precio_venta,unidad,stock FROM medicamentos ORDER BY nombre ASC")
+$query = mysqli_query($mysqli, "SELECT codigo,nombre,precio_compra,precio_venta,unidad,stock FROM medicamentos ORDER BY codigo ASC")
                                 or die('Error '.mysqli_error($mysqli));
 $count  = mysqli_num_rows($query);
 ?>
@@ -47,15 +47,15 @@ $count  = mysqli_num_rows($query);
         <?php
        
         while ($data = mysqli_fetch_assoc($query)) {
-            $precio_compra = format_rupiah($data['precio_compra']);
-            $precio_venta = format_rupiah($data['precio_venta']);
+            $precio_compra = $data['precio_compra'];
+            $precio_venta = $data['precio_venta'];
           
             echo "  <tr>
                         <td width='40' height='13' align='center' valign='middle'>$no</td>
                         <td width='80' height='13' align='center' valign='middle'>$data[codigo]</td>
                         <td style='padding-left:5px;' width='180' height='13' valign='middle'>$data[nombre]</td>
-                        <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'>$. $precio_compra</td>
-                        <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'>$. $precio_venta</td>
+                        <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'>$ $precio_compra</td>
+                        <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'>$ $precio_venta</td>
                         <td style='padding-right:10px;' width='80' height='13' align='right' valign='middle'>$data[stock]</td>
                         <td width='80' height='13' align='center' valign='middle'>$data[unidad]</td>
                     </tr>";

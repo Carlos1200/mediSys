@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `medicamentos` (
   `codigo` varchar(7) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `precio_compra` int(11) NOT NULL,
-  `precio_venta` int(11) NOT NULL,
+  `precio_compra` decimal(10,2) NOT NULL,
+  `precio_venta` decimal(10,2) NOT NULL,
   `unidad` varchar(20) NOT NULL,
   `stock` int(11) NOT NULL,
   `created_user` int(3) NOT NULL,

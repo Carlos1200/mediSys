@@ -69,8 +69,8 @@
                                             or die('error: '.mysqli_error($mysqli));
 
             while ($data = mysqli_fetch_assoc($query)) { 
-              $precio_compra = format_rupiah($data['precio_compra']);
-              $precio_venta = format_rupiah($data['precio_venta']);
+              $precio_compra = $data['precio_compra'];
+              $precio_venta = $data['precio_venta'];
            
               echo "<tr>
                       <td width='30' class='center'>$no</td>

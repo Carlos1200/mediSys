@@ -15,8 +15,8 @@ else {
      
             $codigo  = mysqli_real_escape_string($mysqli, trim($_POST['codigo']));
             $nombre  = mysqli_real_escape_string($mysqli, trim($_POST['nombre']));
-            $pcompra = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['pcompra'])));
-            $pventa = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['pventa'])));
+            $pcompra =  mysqli_real_escape_string($mysqli, trim($_POST['pcompra']));
+            $pventa = mysqli_real_escape_string($mysqli, trim($_POST['pventa']));
             $unidad     = mysqli_real_escape_string($mysqli, trim($_POST['unidad']));
 
             $created_user = $_SESSION['id_user'];
@@ -40,8 +40,8 @@ else {
         
                 $codigo  = mysqli_real_escape_string($mysqli, trim($_POST['codigo']));
                 $nombre  = mysqli_real_escape_string($mysqli, trim($_POST['nombre']));
-                $pcompra = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['pcompra'])));
-                $pventa = str_replace('.', '', mysqli_real_escape_string($mysqli, trim($_POST['pventa'])));
+                $pcompra = mysqli_real_escape_string($mysqli, trim($_POST['pcompra']));
+                $pventa = mysqli_real_escape_string($mysqli, trim($_POST['pventa']));
                 $unidad     = mysqli_real_escape_string($mysqli, trim($_POST['unidad']));
 
                 $updated_user = $_SESSION['id_user'];
